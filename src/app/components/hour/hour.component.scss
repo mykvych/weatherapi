@@ -1,0 +1,58 @@
+.hour-container {
+	margin: 5px 0 5px 0;
+	font-size: 15px;
+}
+
+.hour-header-container {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	border: 1px solid white;
+	background: rgba(133, 201, 195, 0.7);
+	border-radius: 10px;
+	padding: 0 35px 0 0;
+	cursor: pointer;
+}
+
+
+.hour-weather-icon {
+
+	& img{
+		width: 40px;
+		height: 40px;
+	}
+}
+
+.hour-weather-time {
+	width: 40%;
+}
+
+.hour-weather-time-title {
+}
+
+.hour-weather-desc {
+}
+
+.hour-weather-data {
+	display: flex;
+	justify-content: space-between;
+}
+
+.left-weather-data {
+	margin: 5px 0 0 0;
+	text-align: left;
+}
+
+.temperature {
+	margin: 0 0 5px 0;
+}
+
+.right-weather-data {
+	margin: 5px 0 0 0;
+	text-align: right;
+}
+
+.pressure {
+	margin: 0 0 5px 0;
+}
+

@@ -1,0 +1,21 @@
+.app-container{
+	padding: 20px;
+	background-image: url('../assets/img/wallpaper.jpg');
+	background-size: cover;
+	background-repeat:no-repeat;
+	background-position:center; 
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	-webkit-background-size: cover;
+	-ms-content-zooming: none;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	overflow-y: auto;
+
+	& .days-container{
+		margin: 15px auto 0;
+		width: 70%;
+	}
+}
+

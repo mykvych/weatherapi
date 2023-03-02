@@ -1,0 +1,24 @@
+<div class="weather-container">
+  <div class="title-image">
+    <img src="assets/img/logo.png" alt="Logo">
+  </div>
+  <form method="get" #weatherForm="ngForm" >
+    <div class="city-field">
+      <input type="text" name="city" id="city" placeholder="City" 
+        [(ngModel)]="cityName" maxlength="15" autocomplete="off"
+        #city="ngModel" (focusout)="getCountriesAndStates()">
+    </div>
+    <div class="countries-states-dropdown">
+      <select name="countries" id="countries" #countries="ngModel" [(ngModel)]="cityClarification">
+        <option 
+          *ngFor="let countryAndState of countriesAndStates"
+          value="{{countryAndState.lat}},{{countryAndState.lon}}">
+            {{countryAndState | removeDublicates}}
+        </option>
+      </select>
+    </div>
+    <div class="submit-button">
+      <input type="button" value="Search" id="search-btn" [disabled]="!cityClarification" (click)="getWeather(weatherForm)">
+    </div>
+  </form>
+</div>

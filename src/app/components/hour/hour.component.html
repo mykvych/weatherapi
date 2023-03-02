@@ -1,0 +1,35 @@
+<div class="hour-container">
+  <div class="hour-header-container" (click)="showForecast()">
+    <div class="hour-weather-icon">
+      <img src='{{ "http://openweathermap.org/img/wn/" + hourInfo.weather[0].icon + "@2x.png" }}' alt="">
+    </div>
+    <div class="hour-weather-time">
+      <span class="hour-weather-time-title">
+        Time: {{hourInfo.dt_txt}}
+      </span>
+    </div>
+    <div class="hour-weather-desc">
+      <span class="hour-weather-desc-title">
+        Description: {{hourInfo.weather[0].main}}
+      </span>
+    </div>
+  </div>
+  <div class="hour-weather-data" *ngIf="showHourForecast">
+    <div class="left-weather-data">
+      <div class="temperature">
+        Temperature: {{hourInfo.main.temp | celsius}}&#176;C
+      </div>
+      <div class="humidity">
+        Humidity: {{hourInfo.main.humidity}}%
+      </div>
+    </div>
+    <div class="right-weather-data">
+      <div class="pressure">
+        Pressure: {{hourInfo.main.pressure}}
+      </div>
+      <div class="wind">
+        Wind speed: {{hourInfo.wind.speed}}
+      </div>
+    </div>
+  </div>
+</div>

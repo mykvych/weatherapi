@@ -1,0 +1,11 @@
+<div class="day-container">
+  <div class="input-label">
+    <input id="tab-1" type="checkbox">
+    <label (click)="seeHourlyForecast()" for="tab-1">
+      <ng-content></ng-content>
+    </label>
+  </div>
+  <div class="hours-container" *ngIf="showForecast">
+    <app-hour *ngFor="let hour of dayInfo" [hourInfo]="hour"></app-hour>
+  </div>
+</div>

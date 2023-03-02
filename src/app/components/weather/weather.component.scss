@@ -1,0 +1,173 @@
+	
+	.weather-container{
+		margin: 0px auto;
+		padding: 15px;
+		border-radius: 10px;
+		box-shadow: rgba(195, 194, 194, 0.24) 0px 3px 8px;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+
+		& .title-image img {
+			width: 60px;
+			height: 60px;
+		}
+
+		& form {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			max-width: 600px;
+
+			& input, select {
+				border-radius: 10px;
+			}
+
+			& .city-field {
+				width: 150px;
+				box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+				& input {
+					padding: 10px;
+					border: 1px solid white;
+					background: transparent;
+					font-size: 18px;
+					color: #ffff;
+					font-weight: 500;
+					width: 100%;
+					height: 100%;
+
+					&::placeholder{
+						color: white;
+					}
+				}
+			}
+
+			& .countries-states-dropdown {
+				width: 150px;
+
+				& select {
+					width: 100%;
+					padding: 10px;
+					box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+					border: 1px solid white;
+					background: transparent;
+					color: white;
+					font-size: 16px;
+
+					& option{
+						background: #4e7f8d;
+					}
+				}
+			}
+
+			& .submit-button{
+				width: 150px;
+
+				& input {
+					width: 100%;
+					padding: 10px;
+					font-size: 18px;
+					background: transparent;
+					color: #fff;
+					font-weight: 500;
+					box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+					border: 1px solid white;
+
+					&:hover{
+						background: rgb(69, 142, 69);
+						transition: 0.2s;
+					}
+
+					&:disabled{
+						background: #bdbbb7;
+					}
+				}
+			}
+		}
+
+		@media screen and (min-width: 320px) and (max-width: 420px) {
+			min-width: 95%;
+			flex-direction: column;
+			padding: 5px;
+
+			& form {
+				margin: 10px 0 0 0;
+				flex-direction: column;
+				height: 160px;
+				width: 90%;
+
+				& .city-field {
+					width: 85%;
+				}
+
+				& .countries-states-dropdown {
+					width: 85%;
+				}
+
+				& .submit-button{
+					width: 50%;
+				}
+			}
+		}
+
+		@media screen and (min-width: 421px) and (max-width: 520px) {
+			min-width: 85%;
+			flex-direction: column;
+
+			& form {
+				margin: 10px 0 0 0;
+				flex-direction: column;
+				height: 160px;
+				width: 80%;
+
+				& .city-field {
+					width: 85%;
+				}
+
+				& .countries-states-dropdown {
+					width: 85%;
+				}
+
+				& .submit-button{
+					width: 50%;
+				}
+			}
+		}
+
+		@media screen and (min-width: 521px) and (max-width: 3200px) {
+
+			& form {
+				margin: 10px 0 0 0;
+				width: 80%;
+
+				& .city-field {
+					width: 35%;
+				}
+
+				& .countries-states-dropdown {
+					width: 35%;
+				}
+
+				& .submit-button{
+					width: 20%;
+				}
+			}
+		}
+
+		@media screen and (min-width: 820px) and (max-width: 1050px) {
+			width: 65%;		
+		}
+
+		@media screen and (min-width: 1051px) and (max-width: 1800px) {
+			width: 45%;		
+		}
+
+		@media screen and (min-width: 1801px) and (max-width: 2200px) {
+			width: 40%;			
+		}
+
+		@media screen and (min-width: 2201px) and (max-width: 3200px) {
+			width: 30%;			
+		}
+	}
