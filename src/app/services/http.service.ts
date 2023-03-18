@@ -17,6 +17,7 @@ export class HttpService{
 
   getCountriesAndStates(city: string): Observable<Geolocation[]>{
     this.url = `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=10&appid=c9dd7eeb1316e4aaa7af48ab20b74d22`;
+    console.log(this.url);
 
     return this.http.get<Geolocation[]>(this.url);
   }
