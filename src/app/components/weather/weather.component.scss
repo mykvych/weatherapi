@@ -5,7 +5,7 @@
 		border-radius: 10px;
 		box-shadow: rgba(195, 194, 194, 0.24) 0px 3px 8px;
 		display: flex;
-		align-items: center;
+		align-items: start;
 		justify-content: space-between;
 
 		& .title-image img {
@@ -26,8 +26,10 @@
 			& .city-field {
 				width: 150px;
 				box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+				border-radius: 10px;
 
 				& input {
+					border-radius: 10px;
 					padding: 10px;
 					border: 1px solid white;
 					background: transparent;
@@ -45,26 +47,102 @@
 
 			& .countries-states-dropdown {
 				width: 150px;
+				height: 42.4px;
+				border-radius: 10px;
+				position: relative;
+				border: 1px solid white;
 
-				& select {
-					width: 100%;
+				& input {
+					width: 83%;
+					height: 100%;
 					padding: 10px;
+					cursor: pointer;
+					border-right: 1px solid white;
+					outline: none;
+					border-radius: 0px;
 					box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-					border: 1px solid white;
+					font-size: 18px;
+					position: absolute;
+					top: 0;
+					left: 0;
+					user-select: none;
 					background: transparent;
 					color: white;
-					font-size: 16px;
+				}
 
-					& option{
-						background: #4e7f8d;
+				& .options{
+					width: 100%;
+					border-radius: 10px;
+					padding: 5px;
+					cursor: pointer;
+					background: white;
+					outline: none;
+					box-shadow: 0 10px 25px rgba(124, 130, 141, 0.2);
+					font-size: 18px;
+					overflow: hidden;
+					position: absolute;
+					top: 80px;
+					transition: all 0.7s ease;  
+					background: rgba(255, 255, 255, 0.4);
+					backdrop-filter: blur(4.5px);
+					-webkit-backdrop-filter: blur(4.5px);
+					border: 1px solid rgba(255, 255, 255, 0.18);
+					opacity: 0;
+					transform: translateY(-50px);
+					visibility: visible;
+					z-index: 99;
+
+					& .option {
+						padding: 10px;
+						border-radius: 10px;
+						transition: all 0.2s ease;
+						color: #292d34;
+					}
+
+					& .option:not(:last-of-type) {
+						margin-bottom: 8px;
+					}
+
+					& .option:hover {
+						color: white;
+						background: #5bc5fa;
+						box-shadow: 0 10px 25px rgba(42, 179, 248, 0.4);
 					}
 				}
+			}
+
+			& .countries-states-dropdown.opened .options {
+				opacity: 1;
+				visibility: visible;
+				transform: translateY(-30px);
+			}
+
+			& .countries-states-dropdown.opened::before {
+				transform: rotate(-225deg);
+				top: 18px;
+			}
+
+			& .countries-states-dropdown::before{
+				content: "";
+				position: absolute;
+				right: 6.2%;
+				top: 13.5px;
+				z-index: 9999;
+				width: 10px;
+				height: 10px;
+				border: 2px solid white;
+				border-top: transparent;
+				border-right: transparent;
+				transform: rotate(-45deg);
+				pointer-events: none;
+				transition: all 0.3s linear;
 			}
 
 			& .submit-button{
 				width: 150px;
 
 				& input {
+					cursor: pointer;
 					width: 100%;
 					padding: 10px;
 					font-size: 18px;
@@ -84,6 +162,10 @@
 					}
 				}
 			}
+		}
+
+		@media screen and (min-width: 320px) and (max-width: 521px) {
+			align-items: center;
 		}
 
 		@media screen and (min-width: 320px) and (max-width: 420px) {

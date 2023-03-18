@@ -1,40 +1,24 @@
 .day-container {
   color: white;
   border-radius: 10px;
-  margin: 0 0 7px 0;
+  margin: 0 0 10px 0;
   font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  min-width: 100%;
 
-  & input { display: none; }
-
-  & input:checked ~ label::after {
-    transform: rotate(90deg); 
-  }
-
-  & label:hover {
-    background: rgba(50, 61, 77, 0.7);
-  }
-
-  & label{
+  & .day-container-title{
+    display: flex;
+    justify-content: space-between;
     font-size: 18px;
     border-radius: 10px;
-    position: relative;
-    display: block;
-    width: 100%;
     padding: 10px;
     font-weight: 600;
-    color: #fff;
     background: rgba(50, 61, 77, 0.3);
     cursor: pointer;
     border: 1px solid white;
+    margin: 0 0 5px 0;
   }
 
-  & label::after {
-    display: block;  
-    content: "\276F";
-    position: absolute;
-    right: 10px; top: 10px;
-    transition: all 0.4s;
+  & .day-container-title:hover{
+    background: rgba(50, 61, 77, 0.7);
   }
 
   & .hours-container {
@@ -48,8 +32,4 @@
       margin: 0 0 5px 0;
     }
   }
-}
-
-.input-label {
-  border-radius: 10px;
 }

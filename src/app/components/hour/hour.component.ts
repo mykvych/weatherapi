@@ -15,8 +15,22 @@ export class HourComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  showForecast(){
+  showForecast(event: HTMLElement){
+    if(event.tagName != 'DIV'){
+      var parentEl = event.parentElement.parentElement;
+      this.openHoursInfo(parentEl);
+    }else
+      this.openHoursInfo(event);
+
     this.showHourForecast = !this.showHourForecast;
+  }
+
+  openHoursInfo(el: HTMLElement){
+    let element = el.getElementsByClassName('hour-arrow')[0] as HTMLElement;
+    if(element.style.transform == 'rotate(90deg)')
+      element.style.transform = 'rotate(0deg)'
+    else
+      element.style.transform= 'rotate(90deg)';
   }
 
 }

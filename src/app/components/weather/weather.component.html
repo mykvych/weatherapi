@@ -2,23 +2,21 @@
   <div class="title-image">
     <img src="assets/img/logo.png" alt="Logo">
   </div>
-  <form method="get" #weatherForm="ngForm" >
+  <form method="get">
     <div class="city-field">
       <input type="text" name="city" id="city" placeholder="City" 
-        [(ngModel)]="cityName" maxlength="15" autocomplete="off"
-        #city="ngModel" (focusout)="getCountriesAndStates()">
+        [(ngModel)]="cityName" maxlength="15" autocomplete="off" (focusout)="getCountriesAndStates()">
     </div>
-    <div class="countries-states-dropdown">
-      <select name="countries" id="countries" #countries="ngModel" [(ngModel)]="cityClarification">
-        <option 
-          *ngFor="let countryAndState of countriesAndStates"
-          value="{{countryAndState.lat}},{{countryAndState.lon}}">
-            {{countryAndState | removeDublicates}}
-        </option>
-      </select>
+    <div class="countries-states-dropdown" (click)="toggleDropdown()">
+      <input type="text" readonly class="countries-input" name="countries" id="countries"/>
+      <ul class="options" *ngIf="countriesDropdown.classList.contains('opened')">
+        <li class="option" *ngFor="let countryAndState of countriesAndStates" (click)="selectOption($event)">
+          {{countryAndState | parseLocation}}
+        </li>
+      </ul>
     </div>
     <div class="submit-button">
-      <input type="button" value="Search" id="search-btn" [disabled]="!cityClarification" (click)="getWeather(weatherForm)">
+      <input type="button" value="Search" id="search-btn" [disabled]="!cityCoordinates.lat" (click)="getWeather()">
     </div>
   </form>
 </div>

@@ -14,7 +14,6 @@ export class AppComponent implements OnInit {
     forecast = new Map();
 
     handleCoordinates(coordinates: any){
-
         this.coordinates = coordinates;
 
         if(this.coordinates === ''){
@@ -25,7 +24,6 @@ export class AppComponent implements OnInit {
     }
 
     getWeather(weatherList: any[]){
-
         let hours = weatherList.map(a => a.dt_txt.substring(0,10));
         let keys = [... new Set(hours)]
 
@@ -34,8 +32,6 @@ export class AppComponent implements OnInit {
             this.forecast.set(k, hours);
             this.forecast = new Map([...this.forecast].sort());
         })
-
-        console.log(this.forecast);
     }
 
     constructor() { }

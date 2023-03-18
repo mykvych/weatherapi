@@ -1,5 +1,5 @@
 <div class="hour-container">
-  <div class="hour-header-container" (click)="showForecast()">
+  <div class="hour-header-container" (click)="showForecast($event.target)">
     <div class="hour-weather-icon">
       <img src='{{ "http://openweathermap.org/img/wn/" + hourInfo.weather[0].icon + "@2x.png" }}' alt="">
     </div>
@@ -12,6 +12,11 @@
       <span class="hour-weather-desc-title">
         Description: {{hourInfo.weather[0].main}}
       </span>
+    </div>
+    <div class="hour-arrow">
+      <label> 	
+        &#x276f;
+      </label>
     </div>
   </div>
   <div class="hour-weather-data" *ngIf="showHourForecast">

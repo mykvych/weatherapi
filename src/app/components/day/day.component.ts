@@ -15,8 +15,22 @@ export class DayComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  seeHourlyForecast(){
+  seeHourlyForecast(event: HTMLElement){
+    if(event.tagName != 'DIV'){
+      var parentEl = event.parentElement.parentElement;
+      this.openHours(parentEl);
+    }else
+      this.openHours(event);
+
     this.showForecast = !this.showForecast;
+  }
+
+  openHours(el: HTMLElement){
+    let element = el.getElementsByClassName('day-arrow')[0] as HTMLElement;
+    if(element.style.transform == 'rotate(90deg)')
+      element.style.transform = 'rotate(0deg)'
+    else
+      element.style.transform= 'rotate(90deg)';
   }
 
 }

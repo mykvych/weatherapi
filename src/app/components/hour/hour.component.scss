@@ -10,8 +10,17 @@
 	border: 1px solid white;
 	background: rgba(133, 201, 195, 0.7);
 	border-radius: 10px;
-	padding: 0 35px 0 0;
+	padding: 0 10px 0 0;
 	cursor: pointer;
+
+	& .hour-arrow{
+    font-size: 18px;
+    font-weight: 600;
+	}
+
+	&:hover{
+		background: rgba(138, 164, 191, 0.7);
+	}
 }
 
 
@@ -24,7 +33,6 @@
 }
 
 .hour-weather-time {
-	width: 40%;
 }
 
 .hour-weather-time-title {

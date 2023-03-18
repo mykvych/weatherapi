@@ -8,10 +8,9 @@ export class HttpService{
 
   constructor(private http: HttpClient){ }
     
-  getWeather(coordinates: string){
+  getWeather(coordinates: any){
 
-    const [lat, lon] = coordinates.split(',');
-    this.url = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=c9dd7eeb1316e4aaa7af48ab20b74d22`;
+    this.url = `http://api.openweathermap.org/data/2.5/forecast?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=c9dd7eeb1316e4aaa7af48ab20b74d22`;
 
     return this.http.get(this.url);
   }
