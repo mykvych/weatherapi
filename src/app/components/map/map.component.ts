@@ -13,8 +13,7 @@ export class MapComponent implements OnInit, OnChanges {
   @Input() lat: string = '';
   @Input() lon: string = '';
 
-  constructor(private leaflet: LeafletService) {
-  }
+  constructor(private leaflet: LeafletService) {}
 
   ngOnInit() {
   }

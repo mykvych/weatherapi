@@ -1,9 +1,12 @@
 import { Component, DoCheck, EventEmitter, OnInit, Output } from '@angular/core';
 import { HttpService } from '../../services/http.service';
 import { NotificationService } from '../../services/notification.service';
-import { UtilService } from '../../services/util.service';
 import { Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
+import { CityInfo } from 'src/app/models/cityInfo';
+import { Coord } from 'src/app/models/coord';
+import { Forecast } from 'src/app/models/forecast';
+import { Forecast_List } from 'src/app/models/forecast_list';
 
 @Component({
   selector: 'app-weather',
@@ -13,23 +16,22 @@ import { DOCUMENT } from '@angular/common';
 export class WeatherComponent implements OnInit, DoCheck{
 
   cityName: string = '';
-  cityCoordinates = {
-    lat: '',
-    lon: ''   
+  cityCoordinates: Coord = {
+    lat: 0,
+    lon: 0
   };
-  countriesAndStates: any = [];
-  weatherInfo: any = {};
+  countriesAndStates: CityInfo[] = [];
+  weatherInfo: Forecast;
   countriesDropdown: Element;
   countriesInput: HTMLInputElement;
   countriesOptions: NodeListOf<Element>;
 
   @Output() coordinates = new EventEmitter<string>();
-  @Output() days = new EventEmitter<any[]>();
+  @Output() days = new EventEmitter<Forecast_List[]>();
 
   constructor(@Inject(DOCUMENT) private document: Document,
     private httpService: HttpService, 
-    private notificationService: NotificationService,
-    private utilService: UtilService) {
+    private notificationService: NotificationService) {
   }
 
   ngOnInit(): void {
@@ -61,29 +63,24 @@ export class WeatherComponent implements OnInit, DoCheck{
     [this.cityCoordinates.lat, this.cityCoordinates.lon] = [city.lat, city.lon];
   };
 
-  getDaysInfo(cityCoordinates: object){
+  getDaysInfo(cityCoordinates: Coord){
     this.httpService
       .getWeather(cityCoordinates)
       .subscribe({
-        next: (response: any) => {
-          this.weatherInfo.weatherList = response.list;
+        next: (response: Forecast) => {
+          this.weatherInfo = response;
         },
         error: error => console.log(error),
-        complete: () => this.days.emit(this.weatherInfo.weatherList)
+        complete: () => {
+          this.days.emit(this.weatherInfo.list)
+        }
       });
   }
 
   getWeather(){
-    if(this.utilService.isNullOrUnderfinedOrEmpty(this.cityName)){
-      this.notificationService.showError('Please enter the city', 'Error');
-    }else if(!this.utilService.isCityFormatCorrect(this.cityName)){
-      this.notificationService.showWarning('Length of city should be between 2 and 15', 'Warning');
-    }
-    else{
-      this.getDaysInfo(this.cityCoordinates);
-      this.coordinates.emit(`${this.cityCoordinates.lat}, ${this.cityCoordinates.lon}`);
-      this.notificationService.showSuccess(`City ${this.cityName} is found`, 'Success');
-    }
+    this.getDaysInfo(this.cityCoordinates);
+    this.coordinates.emit(`${this.cityCoordinates.lat}, ${this.cityCoordinates.lon}`);
+    this.notificationService.showSuccess(`City ${this.cityName} is found`, 'Success');
   }
 
   getCountriesAndStates(){
@@ -94,7 +91,7 @@ export class WeatherComponent implements OnInit, DoCheck{
       this.httpService
         .getCountriesAndStates(this.cityName.toUpperCase())
         .subscribe({
-          next: (response: Geolocation[]) => {
+          next: (response: any) => {
             if(response.length == 0){
               this.notificationService.showError(`City ${this.cityName} does not exist`, 'Error');
               this.resetCoordinatesDropdown();
@@ -108,8 +105,8 @@ export class WeatherComponent implements OnInit, DoCheck{
 
   resetCoordinatesDropdown(){
     this.countriesInput.value = '';
-    this.cityCoordinates.lat = '';
-    this.cityCoordinates.lon = '';
+    this.cityCoordinates.lat = 0;
+    this.cityCoordinates.lon = 0;
   }
 }
 
